@@ -31,7 +31,8 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String email, String username, String password, Timestamp createdAt) {
+    public User(int id, String firstName, String email, String username, String password, Timestamp createdAt) {
+        this.id = id;
         this.firstName = firstName;
         this.email = email;
         this.username = username;
