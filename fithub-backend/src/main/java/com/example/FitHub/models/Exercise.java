@@ -12,21 +12,21 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+
+    private String exerciseName;
+    private Integer sets;
+    private Integer reps;
+    private Integer weight;
+
     @ManyToOne
     @JoinColumn(name = "workout_id", nullable = false)
     @JsonBackReference
     private Workout workout;
-
-    private String exerciseName;
-    private int sets;
-    private int reps;
-    private int weight;
-
     public Exercise() {
     }
 
-    public Exercise(int id, Workout workout, String exerciseName, int sets, int reps, int weight) {
-        this.id = id;
+    public Exercise(String exerciseName, Integer sets, Integer reps, Integer weight, Workout workout) {
         this.workout = workout;
         this.exerciseName = exerciseName;
         this.sets = sets;
@@ -58,27 +58,27 @@ public class Exercise {
         this.exerciseName = exerciseName;
     }
 
-    public int getSets() {
+    public Integer getSets() {
         return sets;
     }
 
-    public void setSets(int sets) {
+    public void setSets(Integer sets) {
         this.sets = sets;
     }
 
-    public int getReps() {
+    public Integer getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(Integer reps) {
         this.reps = reps;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 }

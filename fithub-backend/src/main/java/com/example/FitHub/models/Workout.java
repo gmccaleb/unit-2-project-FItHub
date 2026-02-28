@@ -32,8 +32,7 @@ public class Workout {
     public Workout() {
     }
 
-    public Workout(int id, User user, String title, LocalDate date) {
-        this.id = id;
+    public Workout(User user, String title, LocalDate date) {
         this.user = user;
         this.title = title;
         this.date = date;
@@ -73,6 +72,10 @@ public class Workout {
 
     public List<Exercise> getExercises() {
         return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 
 }
