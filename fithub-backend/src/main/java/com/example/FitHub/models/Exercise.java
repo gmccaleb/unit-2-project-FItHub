@@ -1,5 +1,6 @@
 package com.example.FitHub.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 
@@ -11,7 +12,11 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int workoutId;
+    @ManyToOne
+    @JoinColumn(name = "workout_id", nullable = false)
+    @JsonBackReference
+    private Workout workout;
+
     private String exerciseName;
     private int sets;
     private int reps;
@@ -20,9 +25,9 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(int id, int workoutId, String exerciseName, int sets, int reps, int weight) {
+    public Exercise(int id, Workout workout, String exerciseName, int sets, int reps, int weight) {
         this.id = id;
-        this.workoutId = workoutId;
+        this.workout = workout;
         this.exerciseName = exerciseName;
         this.sets = sets;
         this.reps = reps;
@@ -37,12 +42,12 @@ public class Exercise {
         this.id = id;
     }
 
-    public int getWorkoutId() {
-        return workoutId;
+    public Workout getWorkout() {
+        return workout;
     }
 
-    public void setWorkoutId(int workoutId) {
-        this.workoutId = workoutId;
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
     }
 
     public String getExerciseName() {

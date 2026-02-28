@@ -1,8 +1,12 @@
 package com.example.FitHub.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -13,16 +17,24 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
+
     private String title;
     private LocalDate date;
+
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Exercise> exercises = new ArrayList<>();
 
     public Workout() {
     }
 
-    public Workout(int id, int userId, String title, LocalDate date) {
+    public Workout(int id, User user, String title, LocalDate date) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.title = title;
         this.date = date;
     }
@@ -35,12 +47,12 @@ public class Workout {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -58,4 +70,9 @@ public class Workout {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
 }
