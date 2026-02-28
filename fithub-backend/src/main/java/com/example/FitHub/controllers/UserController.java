@@ -23,6 +23,7 @@ public class UserController {
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDTO) {
+        // Checks if email or username already exists
         if (userRepository.existsByEmail(userDTO.getEmail())) {
             return ResponseEntity.badRequest().body("Email is already in use.");
         }
@@ -37,6 +38,7 @@ public class UserController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDTO loginDTO){
 
+        // Checks if username exists
         if(!userRepository.existsByUsername(loginDTO.getUsername())){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Username not found");
