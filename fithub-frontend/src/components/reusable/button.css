@@ -1,0 +1,51 @@
+/* Submit Button */
+.submit-btn {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #1976d2;
+}
+
+/* Add Exercise Button */
+.add-exercise-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-exercise-btn:hover {
+  background-color: #45a049;
+}
+
+/* Reset History Button */
+.reset-history-btn {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px 22px;
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.reset-history-btn:hover {
+  background-color: #d50000;
+  transform: translateY(-2px); /* moves the button up like it's floating */
+}
+
+.reset-history-btn:active {
+  transform: translateY(0);
+}
