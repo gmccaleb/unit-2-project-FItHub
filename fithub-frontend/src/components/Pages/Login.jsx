@@ -21,6 +21,7 @@ function Login() {
     });
   };
 
+  // Sends login request to backend, and updates auth state on success
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -41,6 +42,7 @@ function Login() {
 
       const userData = await response.json();
 
+      // On successful login, updates auth context with user data and navigates to home page
       auth.login(userData);
       navigate("/");
     } catch (err) {
