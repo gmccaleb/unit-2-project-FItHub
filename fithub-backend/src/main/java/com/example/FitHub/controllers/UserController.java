@@ -58,7 +58,7 @@ public class UserController {
                     .body("Incorrect password");
         }
 
-        return ResponseEntity.ok("Login successful");
+        return ResponseEntity.ok(user);
     }
 
 }
