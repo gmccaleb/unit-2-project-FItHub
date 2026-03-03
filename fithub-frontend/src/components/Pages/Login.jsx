@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
+import Button from "../reusable/Button";
 
 function Login() {
   const auth = useAuth();
@@ -25,7 +26,7 @@ function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/users/login", {
+      const response = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +71,10 @@ function Login() {
           onChange={handleChange}
         />
 
-        <button type="submit">Login</button>
+        <Button text="Login" type="submit" className="login" />
+        <p className="auth-switch">
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
       </form>
     </div>
   );
