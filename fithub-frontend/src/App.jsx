@@ -34,10 +34,10 @@ function App() {
         <div className="app-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Exercise-Library" element={<ExerciseLibrary />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/exercise-library" element={<ExerciseLibrary />} />
             <Route
-              path="/Log-Workout"
+              path="/log-workout"
               element={
                 <LogWorkout
                   workoutHistory={workoutHistory}
@@ -45,10 +45,10 @@ function App() {
                 />
               }
             />
-            <Route path="/Workout-Submitted" element={<WorkoutSubmitted />} />
+            <Route path="/workout-submitted" element={<WorkoutSubmitted />} />
             {/* Pass history state to WorkoutHistory */}
             <Route
-              path="/Workout-History"
+              path="/workout-history"
               element={
                 <WorkoutHistory
                   workoutHistory={workoutHistory}

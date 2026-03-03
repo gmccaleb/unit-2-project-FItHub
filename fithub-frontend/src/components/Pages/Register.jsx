@@ -24,6 +24,7 @@ function Register() {
     });
   };
 
+  // Sends register request to backend, and updates auth state on success
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
