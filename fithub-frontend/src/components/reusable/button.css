@@ -1,5 +1,13 @@
+.btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 /* Submit Button */
-.submit-btn {
+.btn.submit {
   background-color: #2196f3;
   color: white;
   padding: 10px 16px;
@@ -8,12 +16,12 @@
   cursor: pointer;
 }
 
-.submit-btn:hover {
+.btn.submit:hover {
   background-color: #1976d2;
 }
 
 /* Add Exercise Button */
-.add-exercise-btn {
+.btn.add-exercise {
   background-color: #4caf50;
   color: white;
   padding: 10px 16px;
@@ -22,12 +30,12 @@
   cursor: pointer;
 }
 
-.add-exercise-btn:hover {
+.btn.add-exercise:hover {
   background-color: #45a049;
 }
 
 /* Reset History Button */
-.reset-history-btn {
+.btn.reset-history {
   display: inline-block;
   margin: 10px 0;
   padding: 10px 22px;
@@ -41,11 +49,24 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.reset-history-btn:hover {
+.btn.reset-history:hover {
   background-color: #d50000;
   transform: translateY(-2px); /* moves the button up like it's floating */
 }
 
-.reset-history-btn:active {
+.btn.reset-history:active {
   transform: translateY(0);
+}
+
+.btn.login {
+  background-color: #2196f3;
+  color: white;
+}
+
+.btn.login:hover {
+  background-color: #1976d2;
+}
+
+.btn.login:active {
+  transform: translateY(1px);
 }
