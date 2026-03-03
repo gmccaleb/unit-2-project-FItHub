@@ -1,65 +1,82 @@
-import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { useAuth } from "../context/AuthContext";
 import Button from "../reusable/Button";
 
-function Login() {
+
+function Register() {
   const auth = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    firstName: "",
+    email: "",
     username: "",
-    password: "",
+    password: ""
   });
 
   const [error, setError] = useState("");
 
-// Updates form data state when user types in input fields
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
-  // Sends login request to backend, and updates auth state on success
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/login", {
+      const response = await fetch("http://localhost:8080/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
-        setError("Invalid username or password");
+        const message = await response.text();
+        setError(message);
         return;
       }
 
       const userData = await response.json();
 
-      // On successful login, updates auth context with user data and navigates to home page
+      // Auto login user after register
       auth.login(userData);
+
       navigate("/");
+
     } catch (err) {
       setError("Server error");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Log into FitHub</h2>
+    <div className="register-container">
+      <h2>Register</h2>
 
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+
+        <input
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+
+        <input
           name="username"
           placeholder="Username"
           value={formData.username}
@@ -69,18 +86,19 @@ function Login() {
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Password (min 8 characters)"
           value={formData.password}
           onChange={handleChange}
         />
 
-        <Button text="Login" type="submit" className="login" />
+        <Button text="Register" type="submit" className="submit" />
+
         <p className="auth-switch">
-          Don't have an account? <Link to="/register">Register here</Link>
+          Already have an account? <Link to="/login">Login here</Link>
         </p>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Register
