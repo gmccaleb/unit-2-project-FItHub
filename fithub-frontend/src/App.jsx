@@ -10,6 +10,8 @@ import Footer from "./components/layout/Footer";
 import About from "./components/Pages/About";
 import WorkoutSubmitted from "./components/Pages/WorkoutSubmitted";
 import WorkoutHistory from "./components/Pages/WorkOutHistory";
+import Register from "./components/Pages/Register";
+import Login from "./components/Pages/Login";
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
                 />
               }
             />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
         <Footer />
