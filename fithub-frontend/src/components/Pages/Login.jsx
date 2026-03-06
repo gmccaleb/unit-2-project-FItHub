@@ -13,13 +13,19 @@ function Login() {
   });
 
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-// Updates form data state when user types in input fields
+ 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  // Toggles password visibility
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   // Sends login request to backend, and updates auth state on success
@@ -67,14 +73,24 @@ function Login() {
         />
 
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
         />
 
+        <label className="show-password">
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={togglePassword}
+          />
+          Show Password
+        </label>
+
         <Button text="Login" type="submit" className="login" />
+
         <p className="auth-switch">
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
