@@ -72,7 +72,7 @@ function App() {
             </>
           )}
 
-          <Route path="/workout-submitted" element={<WorkoutSubmitted />} />
+          <Route path="/:username/workout-submitted" element={<WorkoutSubmitted />} />
         </Routes>
       </div>
 

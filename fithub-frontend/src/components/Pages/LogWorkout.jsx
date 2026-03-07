@@ -45,7 +45,7 @@ function LogWorkout() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/workouts/${user.username}/log-workout`,
+        `http://localhost:8080/${user.username}/log-workout`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@ function LogWorkout() {
       setWorkoutDate("");
       setExercises([{ name: "", sets: "", reps: "", weight: "" }]);
 
-      navigate("/Workout-Submitted", {
+      navigate(`/${user.username}/workout-submitted`, {
         state: { workoutTitle: savedWorkout.title },
       });
     } catch (error) {
