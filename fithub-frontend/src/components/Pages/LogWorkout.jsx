@@ -1,48 +1,67 @@
 import { useState } from "react";
 import Button from "../reusable/Button";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
-function LogWorkout({ workoutHistory, setWorkoutHistory }) {
+function LogWorkout() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
   const [workoutTitle, setWorkoutTitle] = useState("");
+  const [workoutDate, setWorkoutDate] = useState("");
   const [exercises, setExercises] = useState([
     { name: "", sets: "", reps: "", weight: "" },
   ]);
 
-  // Add new empty fields for exercises
   const addExerciseField = () => {
     setExercises([...exercises, { name: "", sets: "", reps: "", weight: "" }]);
   };
 
-  // Updates individual exercise fields
   const handleExerciseChange = (index, field, value) => {
-    const updatedExercises = exercises.map(
-      (exercise, i) =>
-        i === index ? { ...exercise, [field]: value } : exercise // keeps the same if it wasn't updated
+    const updated = exercises.map((exercise, i) =>
+      i === index ? { ...exercise, [field]: value } : exercise
     );
-    setExercises(updatedExercises);
+    setExercises(updated);
   };
 
-  // Submits workout and adds it to history
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newWorkout = {
+    if (!user?.username) {
+      alert("User not authenticated");
+      return;
+    }
+
+    const workoutData = {
       title: workoutTitle,
-      date: new Date().toLocaleDateString(), // stores current date
+      date: workoutDate || new Date().toISOString(),
       exercises,
     };
 
-    // Adds it to the state that is passed from App.jsx
-    setWorkoutHistory([newWorkout, ...workoutHistory]);
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/workouts/${user.username}/log-workout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(workoutData),
+        }
+      );
 
-    // Resets form for next logged workout
-    setWorkoutTitle("");
-    setExercises([{ name: "", sets: "", reps: "", weight: "" }]);
+      if (!response.ok) throw new Error("Workout submission failed");
 
-    navigate("/Workout-Submitted", {
-      state: { workoutTitle: newWorkout.title },
-    });
+      const savedWorkout = await response.json();
+
+      // Reset form
+      setWorkoutTitle("");
+      setWorkoutDate("");
+      setExercises([{ name: "", sets: "", reps: "", weight: "" }]);
+
+      navigate("/Workout-Submitted", { state: { workoutTitle: savedWorkout.title } });
+    } catch (error) {
+      console.error(error);
+      alert("Error logging workout. Please try again.");
+    }
   };
 
   return (
@@ -50,89 +69,64 @@ function LogWorkout({ workoutHistory, setWorkoutHistory }) {
       <h2>Log a Workout</h2>
 
       <form onSubmit={handleSubmit}>
-        <label className="workout-title">
-          <h4>Workout Title:</h4>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={workoutTitle}
-            onChange={(e) => setWorkoutTitle(e.target.value)}
-            required
-          />
-        </label>
+        <div className="form-group">
+          <label>
+            <h4>Workout Title:</h4>
+            <input
+              type="text"
+              placeholder="Title"
+              value={workoutTitle}
+              onChange={(e) => setWorkoutTitle(e.target.value)}
+              required
+            />
+          </label>
+
+          <label>
+            <h4>Workout Date:</h4>
+            <input
+              type="date"
+              value={workoutDate}
+              onChange={(e) => setWorkoutDate(e.target.value)}
+            />
+          </label>
+        </div>
 
         <h4>Exercises:</h4>
         {exercises.map((exercise, index) => (
           <div key={index} className="exercise-inputs">
             <input
               type="text"
-              name="exercise-name"
               placeholder="Exercise Name"
               value={exercise.name}
-              onChange={(e) =>
-                handleExerciseChange(index, "name", e.target.value)
-              }
+              onChange={(e) => handleExerciseChange(index, "name", e.target.value)}
               required
             />
             <input
               type="number"
-              name="sets"
               placeholder="Sets"
               value={exercise.sets}
-              onChange={(e) =>
-                handleExerciseChange(index, "sets", e.target.value)
-              }
+              onChange={(e) => handleExerciseChange(index, "sets", e.target.value)}
               min={0}
-              onKeyDown={(event) => {
-                if (event.key === "e" || event.key === "E") {
-                  {
-                    /* prevents e from being entered */
-                  }
-                  event.preventDefault();
-                }
-              }}
             />
             <input
               type="number"
-              name="reps"
               placeholder="Reps"
               value={exercise.reps}
-              onChange={(e) =>
-                handleExerciseChange(index, "reps", e.target.value)
-              }
+              onChange={(e) => handleExerciseChange(index, "reps", e.target.value)}
               min={0}
-              onKeyDown={(event) => {
-                if (event.key === "e" || event.key === "E") {
-                  event.preventDefault();
-                }
-              }}
             />
             <input
               type="number"
-              name="weight"
               placeholder="Weight (lbs)"
               value={exercise.weight}
-              onChange={(e) =>
-                handleExerciseChange(index, "weight", e.target.value)
-              }
+              onChange={(e) => handleExerciseChange(index, "weight", e.target.value)}
               min={0}
-              onKeyDown={(event) => {
-                if (event.key === "e" || event.key === "E") {
-                  event.preventDefault();
-                }
-              }}
             />
           </div>
         ))}
 
-        <Button
-          type="button"
-          className="add-exercise"
-          text="Add Exercise"
-          onClick={addExerciseField}
-        />
-        <Button type="submit" className="submit" text="Submit" />
+        <Button type="button" text="+ Add Exercise" onClick={addExerciseField} />
+        <Button type="submit" text="Submit Workout" />
       </form>
     </main>
   );
