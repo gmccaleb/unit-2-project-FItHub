@@ -70,3 +70,24 @@
 .btn.login:active {
   transform: translateY(1px);
 }
+
+/* Delete Exercise Button */
+.btn.delete-exercise {
+  background-color: #e53935;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn.delete-exercise:hover {
+  background-color: #c62828;
+  transform: translateY(-1px);
+}
+
+.btn.delete-exercise:active {
+  transform: translateY(0);
+}
