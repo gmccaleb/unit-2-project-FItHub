@@ -1,22 +1,40 @@
-import Button from "../reusable/Button";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
-function WorkoutHistory({ workoutHistory, setWorkoutHistory }) {
-  // Handler to reset history
-  const handleReset = () => {
-    localStorage.removeItem("workoutHistory"); // clear localStorage
-    setWorkoutHistory([]); // reset state so UI updates
-  };
+function WorkoutHistory() {
+  const { user } = useAuth();
+  const [workoutHistory, setWorkoutHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user?.username) return;
+
+    const fetchHistory = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:8080/${user.username}/workout-history`
+        );
+
+        if (!res.ok) throw new Error("Failed to fetch workout history");
+
+        const data = await res.json();
+        setWorkoutHistory(data);
+      } catch (error) {
+        console.error(error);
+        alert("Error fetching workout history");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, [user?.username]);
+
+  if (loading) return <p>Loading workout history...</p>;
 
   return (
     <main className="workout-history">
       <h2>Workout History</h2>
-
-      {/* Reset button */}
-      <Button
-        text="Reset Workout History"
-        onClick={handleReset}
-        className="reset-history"
-      />
 
       <section>
         {workoutHistory.length === 0 ? (
@@ -39,14 +57,12 @@ function WorkoutHistory({ workoutHistory, setWorkoutHistory }) {
                     <ul>
                       {(workout.exercises || []).map((exercise, i) => {
                         const details = [];
-                        if (exercise.sets)
-                          details.push(`${exercise.sets} sets`);
-                        if (exercise.reps)
-                          details.push(`${exercise.reps} reps`);
+                        if (exercise.sets) details.push(`${exercise.sets} sets`);
+                        if (exercise.reps) details.push(`${exercise.reps} reps`);
 
                         return (
                           <li key={i}>
-                            {exercise.name}
+                            {exercise.name || exercise.exerciseName}
                             {details.length > 0 && ` — ${details.join(" × ")}`}
                             {exercise.weight && ` — ${exercise.weight} lbs`}
                           </li>

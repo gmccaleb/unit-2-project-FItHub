@@ -10,16 +10,17 @@ function LogWorkout() {
   const [workoutTitle, setWorkoutTitle] = useState("");
   const [workoutDate, setWorkoutDate] = useState("");
   const [exercises, setExercises] = useState([
-    { name: "", sets: "", reps: "", weight: "" },
+    { exerciseName: "", sets: "", reps: "", weight: "" },
   ]);
 
+  // Removes an exercise input row by index, but ensures at least one row remains
     const removeExerciseField = (index) => {
     if (exercises.length === 1) return; // keep at least one exercise row
     setExercises(exercises.filter((_, i) => i !== index));
   };
 
   const addExerciseField = () => {
-    setExercises([...exercises, { name: "", sets: "", reps: "", weight: "" }]);
+    setExercises([...exercises, { exerciseName: "", sets: "", reps: "", weight: "" }]);
   };
 
   const handleExerciseChange = (index, field, value) => {
@@ -43,6 +44,7 @@ function LogWorkout() {
       exercises,
     };
 
+    // Send workout data to backend API and handle response
     try {
       const response = await fetch(
         `http://localhost:8080/${user.username}/log-workout`,
@@ -60,7 +62,7 @@ function LogWorkout() {
       // Reset form
       setWorkoutTitle("");
       setWorkoutDate("");
-      setExercises([{ name: "", sets: "", reps: "", weight: "" }]);
+      setExercises([{ exerciseName: "", sets: "", reps: "", weight: "" }]);
 
       navigate(`/${user.username}/workout-submitted`, {
         state: { workoutTitle: savedWorkout.title },
@@ -104,9 +106,9 @@ function LogWorkout() {
             <input
               type="text"
               placeholder="Exercise Name"
-              value={exercise.name}
+              value={exercise.exerciseName}
               onChange={(e) =>
-                handleExerciseChange(index, "name", e.target.value)
+                handleExerciseChange(index, "exerciseName", e.target.value)
               }
               required
             />
