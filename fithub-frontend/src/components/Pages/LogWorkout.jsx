@@ -125,8 +125,8 @@ function LogWorkout() {
           </div>
         ))}
 
-        <Button type="button" text="+ Add Exercise" onClick={addExerciseField} />
-        <Button type="submit" text="Submit Workout" />
+        <Button type="button" text="+ Add Exercise" onClick={addExerciseField} className="add-exercise" />
+        <Button type="submit" text="Submit Workout" onClick={handleSubmit} className="submit" />
       </form>
     </main>
   );
