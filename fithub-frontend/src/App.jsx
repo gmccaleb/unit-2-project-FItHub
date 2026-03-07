@@ -27,6 +27,9 @@ function App() {
     localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
   }, [workoutHistory]);
 
+// const auth = useAuth();
+
+
   return (
     <>
       <div className="app-container">
