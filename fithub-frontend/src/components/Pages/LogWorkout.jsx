@@ -13,13 +13,18 @@ function LogWorkout() {
     { name: "", sets: "", reps: "", weight: "" },
   ]);
 
+    const removeExerciseField = (index) => {
+    if (exercises.length === 1) return; // keep at least one exercise row
+    setExercises(exercises.filter((_, i) => i !== index));
+  };
+
   const addExerciseField = () => {
     setExercises([...exercises, { name: "", sets: "", reps: "", weight: "" }]);
   };
 
   const handleExerciseChange = (index, field, value) => {
     const updated = exercises.map((exercise, i) =>
-      i === index ? { ...exercise, [field]: value } : exercise
+      i === index ? { ...exercise, [field]: value } : exercise,
     );
     setExercises(updated);
   };
@@ -45,7 +50,7 @@ function LogWorkout() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(workoutData),
-        }
+        },
       );
 
       if (!response.ok) throw new Error("Workout submission failed");
@@ -57,7 +62,9 @@ function LogWorkout() {
       setWorkoutDate("");
       setExercises([{ name: "", sets: "", reps: "", weight: "" }]);
 
-      navigate("/Workout-Submitted", { state: { workoutTitle: savedWorkout.title } });
+      navigate("/Workout-Submitted", {
+        state: { workoutTitle: savedWorkout.title },
+      });
     } catch (error) {
       console.error(error);
       alert("Error logging workout. Please try again.");
@@ -98,35 +105,74 @@ function LogWorkout() {
               type="text"
               placeholder="Exercise Name"
               value={exercise.name}
-              onChange={(e) => handleExerciseChange(index, "name", e.target.value)}
+              onChange={(e) =>
+                handleExerciseChange(index, "name", e.target.value)
+              }
               required
             />
             <input
               type="number"
               placeholder="Sets"
               value={exercise.sets}
-              onChange={(e) => handleExerciseChange(index, "sets", e.target.value)}
+              onChange={(e) =>
+                handleExerciseChange(index, "sets", e.target.value)
+              }
               min={0}
+               onKeyDown={(e) => {
+                if (e.key === "e" || e.key === "E") {
+                  e.preventDefault();
+                }
+              }}
             />
             <input
               type="number"
               placeholder="Reps"
               value={exercise.reps}
-              onChange={(e) => handleExerciseChange(index, "reps", e.target.value)}
+              onChange={(e) =>
+                handleExerciseChange(index, "reps", e.target.value)
+              }
               min={0}
+               onKeyDown={(e) => {
+                if (e.key === "e" || e.key === "E") {
+                  e.preventDefault();
+                }
+              }}
             />
             <input
               type="number"
               placeholder="Weight (lbs)"
               value={exercise.weight}
-              onChange={(e) => handleExerciseChange(index, "weight", e.target.value)}
+              onChange={(e) =>
+                handleExerciseChange(index, "weight", e.target.value)
+              }
               min={0}
+              onKeyDown={(e) => {
+                if (e.key === "e" || e.key === "E") {
+                  e.preventDefault();
+                }
+              }}
+            />
+             <Button
+              type="button"
+              text="Delete"
+              className="delete-exercise"
+              onClick={() => removeExerciseField(index)}
             />
           </div>
         ))}
 
-        <Button type="button" text="+ Add Exercise" onClick={addExerciseField} className="add-exercise" />
-        <Button type="submit" text="Submit Workout" onClick={handleSubmit} className="submit" />
+        <Button
+          type="button"
+          text="+ Add Exercise"
+          onClick={addExerciseField}
+          className="add-exercise"
+        />
+        <Button
+          type="submit"
+          text="Submit Workout"
+          onClick={handleSubmit}
+          className="submit"
+        />
       </form>
     </main>
   );
