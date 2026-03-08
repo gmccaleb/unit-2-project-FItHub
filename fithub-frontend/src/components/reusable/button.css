@@ -91,3 +91,24 @@
 .btn.delete-exercise:active {
   transform: translateY(0);
 }
+
+/* Delete Workout Button */
+.btn.delete {
+  background-color: #e53935;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn.delete:hover {
+  background-color: #c62828;
+  transform: translateY(-1px);
+}
+
+.btn.delete:active {
+  transform: translateY(0);
+}
