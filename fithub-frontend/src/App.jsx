@@ -12,6 +12,7 @@ import WorkoutHistory from "./components/Pages/WorkOutHistory";
 import Register from "./components/Pages/Register";
 import Login from "./components/Pages/Login";
 import { useAuth } from "./components/context/AuthContext";
+import EditWorkout from "./components/Pages/EditWorkout";
 
 function App() {
   const { user } = useAuth();
@@ -51,6 +52,14 @@ function App() {
             path="/:username/workout-submitted"
             element={<WorkoutSubmitted />}
           />
+          {/* <Route
+            path="/:username/workout-history/:workoutId/edit"
+            element={<EditWorkout />}
+          /> */}
+          <Route
+  path="/:username/edit-workout/:workoutId"
+  element={<EditWorkout />}
+/>
         </Routes>
       </div>
 

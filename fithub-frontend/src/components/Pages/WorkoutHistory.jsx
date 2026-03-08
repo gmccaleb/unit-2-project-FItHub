@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import TrashButton from "../reusable/TrashButton";
+import { useNavigate } from "react-router";
+import { Pencil, PencilIcon } from "lucide-react";
 
 function WorkoutHistory() {
   const { user } = useAuth();
   const [workoutHistory, setWorkoutHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Fetches workout history from backend API and updates state
   const fetchHistory = async () => {
@@ -55,6 +58,10 @@ function WorkoutHistory() {
       console.error(error);
       alert("Error deleting workout");
     }
+  };
+
+  const handleEditWorkout = (id) => {
+    navigate(`/${user.username}/edit-workout/${id}`);
   };
 
   if (loading) return <p>Loading workout history...</p>;
@@ -107,9 +114,18 @@ function WorkoutHistory() {
                   </td>
 
                   <td>
-                    <TrashButton
-                      onClick={() => handleDeleteWorkout(workout.id)}
-                    />
+                    <div className="action-buttons">
+                      <button
+                        className="edit-btn"
+                        onClick={() => handleEditWorkout(workout.id)}
+                      >
+                        <PencilIcon size={18} />
+                      </button>
+
+                      <TrashButton
+                        onClick={() => handleDeleteWorkout(workout.id)}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}
