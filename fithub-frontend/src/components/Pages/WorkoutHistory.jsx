@@ -1,53 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { useAuth } from "../context/AuthContext";
-
-// function WorkoutHistory() {
-//   const { user } = useAuth();
-//   const [workoutHistory, setWorkoutHistory] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     if (!user?.username) return;
-
-//     const fetchHistory = async () => {
-//       try {
-//         const res = await fetch(
-//           `http://localhost:8080/${user.username}/workout-history`
-//         );
-
-//         if (!res.ok) throw new Error("Failed to fetch workout history");
-
-//         const data = await res.json();
-//         setWorkoutHistory(data);
-//       } catch (error) {
-//         console.error(error);
-//         alert("Error fetching workout history");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchHistory();
-//   }, [user?.username]);
-
-//   const handleDeleteWorkout = async (id) => {
-//     try {
-//       const res = await fetch(`http://localhost:8080/${user.username}/workout-history/${id}`, {
-//         method: "DELETE",
-//       });
-
-//       if (!res.ok) throw new Error("Failed to delete workout");
-
-//       // remove workout from UI after backend deletion
-//       setWorkoutHistory((prev) =>
-//         prev.filter((workout) => workout.id !== id)
-//       );
-//     } catch (error) {
-//       console.error(error);
-//       alert("Error deleting workout");
-//     }
-//   };
-
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import Button from "../reusable/Button";
@@ -157,7 +107,7 @@ function WorkoutHistory() {
                   </td>
 
                   <td>
-                    <Button type="button" text="Delete" onClick={() => handleDeleteWorkout(workout.id)} className="delete" />
+                    <Button type="button" text="🗑️" onClick={() => handleDeleteWorkout(workout.id)} className="delete" />
                   </td>
                 </tr>
               ))}
