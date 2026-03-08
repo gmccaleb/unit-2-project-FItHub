@@ -46,7 +46,9 @@
   font-weight: 600;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .btn.reset-history:hover {
@@ -58,6 +60,7 @@
   transform: translateY(0);
 }
 
+/* Login Button */
 .btn.login {
   background-color: #2196f3;
   color: white;
@@ -71,57 +74,22 @@
   transform: translateY(1px);
 }
 
-/* Delete Exercise Button */
-.btn.delete-exercise {
-  background-color: #e53935;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.btn.delete-exercise:hover {
-  background-color: #c62828;
-  transform: translateY(-1px);
-}
-
-.btn.delete-exercise:active {
-  transform: translateY(0);
-}
-
-/* Delete Workout Button */
-/* .btn.delete {
-  background-color: #e53935;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.btn.delete:hover {
-  background-color: #c62828;
-  transform: translateY(-1px);
-}
-
-.btn.delete:active {
-  transform: translateY(0);
-} */
- .btn.delete  {
+/* Trash Button */
+.trash-btn {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
   padding: 6px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #222;
 }
 
-.btn.delete:hover {
+.trash-btn:hover {
   background: #ffe5e5;
+  color: #ff3b3b;
+  transform: scale(1.08);
 }
