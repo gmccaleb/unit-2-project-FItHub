@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../reusable/Button";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import TrashButton from "../reusable/TrashButton";
 
 function LogWorkout() {
   const navigate = useNavigate();
@@ -154,12 +155,7 @@ function LogWorkout() {
                 }
               }}
             />
-             <Button
-              type="button"
-              text="Delete"
-              className="delete-exercise"
-              onClick={() => removeExerciseField(index)}
-            />
+            <TrashButton onClick={() => removeExerciseField(index)} />
           </div>
         ))}
 

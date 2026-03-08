@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import Button from "../reusable/Button";
+import TrashButton from "../reusable/TrashButton";
 
 function WorkoutHistory() {
   const { user } = useAuth();
   const [workoutHistory, setWorkoutHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetches workout history from backend API and updates state
   const fetchHistory = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/${user.username}/workout-history`
+        `http://localhost:8080/${user.username}/workout-history`,
       );
 
       if (!res.ok) throw new Error("Failed to fetch workout history");
@@ -25,6 +26,7 @@ function WorkoutHistory() {
     }
   };
 
+  // Fetch workout history when component mounts and whenever the username changes
   useEffect(() => {
     if (!user?.username) return;
     fetchHistory();
@@ -32,15 +34,18 @@ function WorkoutHistory() {
 
   const handleDeleteWorkout = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this workout?"
+      "Are you sure you want to delete this workout?",
     );
 
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:8080/${user.username}/workout-history/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `http://localhost:8080/${user.username}/workout-history/${id}`,
+        {
+          method: "DELETE",
+        },
+      );
 
       if (!res.ok) throw new Error("Failed to delete workout");
 
@@ -51,7 +56,6 @@ function WorkoutHistory() {
       alert("Error deleting workout");
     }
   };
-
 
   if (loading) return <p>Loading workout history...</p>;
 
@@ -78,9 +82,7 @@ function WorkoutHistory() {
                 <tr key={workout.id}>
                   <td>{workout.title}</td>
 
-                  <td>
-                    {workout.date || new Date().toLocaleDateString()}
-                  </td>
+                  <td>{workout.date || new Date().toLocaleDateString()}</td>
 
                   <td>
                     <ul>
@@ -96,10 +98,8 @@ function WorkoutHistory() {
                         return (
                           <li key={i}>
                             {exercise.name || exercise.exerciseName}
-                            {details.length > 0 &&
-                              ` — ${details.join(" × ")}`}
-                            {exercise.weight > 0 &&
-                              ` — ${exercise.weight} lbs`}
+                            {details.length > 0 && ` — ${details.join(" × ")}`}
+                            {exercise.weight > 0 && ` — ${exercise.weight} lbs`}
                           </li>
                         );
                       })}
@@ -107,7 +107,9 @@ function WorkoutHistory() {
                   </td>
 
                   <td>
-                    <Button type="button" text="🗑️" onClick={() => handleDeleteWorkout(workout.id)} className="delete" />
+                    <TrashButton
+                      onClick={() => handleDeleteWorkout(workout.id)}
+                    />
                   </td>
                 </tr>
               ))}
