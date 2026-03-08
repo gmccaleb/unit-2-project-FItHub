@@ -1,8 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
-
-
 
 import Home from "./components/Pages/Home";
 import ExerciseLibrary from "./components/Pages/ExerciseLibrary";
@@ -18,15 +15,6 @@ import { useAuth } from "./components/context/AuthContext";
 
 function App() {
   const { user } = useAuth();
-
-  const [workoutHistory, setWorkoutHistory] = useState(() => {
-    const saved = localStorage.getItem("workoutHistory");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
-  }, [workoutHistory]);
 
   return (
     <div className="app-container">
@@ -50,29 +38,19 @@ function App() {
           {/* Protected Routes */}
           {user && (
             <>
-              <Route
-                path="/:username/log-workout"
-                element={
-                  <LogWorkout
-                    workoutHistory={workoutHistory}
-                    setWorkoutHistory={setWorkoutHistory}
-                  />
-                }
-              />
+              <Route path="/:username/log-workout" element={<LogWorkout />} />
 
               <Route
                 path="/:username/workout-history"
-                element={
-                  <WorkoutHistory
-                    workoutHistory={workoutHistory}
-                    setWorkoutHistory={setWorkoutHistory}
-                  />
-                }
+                element={<WorkoutHistory />}
               />
             </>
           )}
 
-          <Route path="/:username/workout-submitted" element={<WorkoutSubmitted />} />
+          <Route
+            path="/:username/workout-submitted"
+            element={<WorkoutSubmitted />}
+          />
         </Routes>
       </div>
 
