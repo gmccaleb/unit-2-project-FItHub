@@ -57,14 +57,14 @@ function WorkoutHistory() {
                     <ul>
                       {(workout.exercises || []).map((exercise, i) => {
                         const details = [];
-                        if (exercise.sets) details.push(`${exercise.sets} sets`);
-                        if (exercise.reps) details.push(`${exercise.reps} reps`);
+                        if (exercise.sets > 0) details.push(`${exercise.sets} sets`);
+                        if (exercise.reps > 0) details.push(`${exercise.reps} reps`);
 
                         return (
                           <li key={i}>
                             {exercise.name || exercise.exerciseName}
                             {details.length > 0 && ` — ${details.join(" × ")}`}
-                            {exercise.weight && ` — ${exercise.weight} lbs`}
+                            {exercise.weight > 0 && ` — ${exercise.weight} lbs`}
                           </li>
                         );
                       })}
