@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
 
 import Home from "./components/Pages/Home";
 import ExerciseLibrary from "./components/Pages/ExerciseLibrary";
@@ -10,55 +9,62 @@ import Footer from "./components/layout/Footer";
 import About from "./components/Pages/About";
 import WorkoutSubmitted from "./components/Pages/WorkoutSubmitted";
 import WorkoutHistory from "./components/Pages/WorkOutHistory";
-
+import Register from "./components/Pages/Register";
+import Login from "./components/Pages/Login";
+import { useAuth } from "./components/context/AuthContext";
+import EditWorkout from "./components/Pages/EditWorkout";
 
 function App() {
-  // Initialize workout history from localStorage or empty array if there is nothing in storage
-  const [workoutHistory, setWorkoutHistory] = useState(() => {
-    const saved = localStorage.getItem("workoutHistory");
-    // return what is saved in local storage, if nothing is saved then return empty array
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  // Updates localStorage whenever workoutHistory changes
-  useEffect(() => {
-    localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
-  }, [workoutHistory]);
+  const { user } = useAuth();
 
   return (
-    <>
-      <div className="app-container">
-        <Header />
-        <div className="app-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Exercise-Library" element={<ExerciseLibrary />} />
-            <Route
-              path="/Log-Workout"
-              element={
-                <LogWorkout
-                  workoutHistory={workoutHistory}
-                  setWorkoutHistory={setWorkoutHistory}
-                />
-              }
-            />
-            <Route path="/Workout-Submitted" element={<WorkoutSubmitted />} />
-            {/* Pass history state to WorkoutHistory */}
-            <Route
-              path="/Workout-History"
-              element={
-                <WorkoutHistory
-                  workoutHistory={workoutHistory}
-                  setWorkoutHistory={setWorkoutHistory}
-                />
-              }
-            />
-          </Routes>
-        </div>
-        <Footer />
+    <div className="app-container">
+      <Header />
+
+      <div className="app-content">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/exercise-library" element={<ExerciseLibrary />} />
+
+          {/* Auth Routes */}
+          {!user && (
+            <>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
+
+          {/* Protected Routes */}
+          {user && (
+            <>
+              <Route path="/:username/log-workout" element={<LogWorkout />} />
+
+              <Route
+                path="/:username/workout-history"
+                element={<WorkoutHistory />}
+              />
+            </>
+          )}
+
+          <Route
+            path="/:username/workout-submitted"
+            element={<WorkoutSubmitted />}
+          />
+          {/* <Route
+            path="/:username/workout-history/:workoutId/edit"
+            element={<EditWorkout />}
+          /> */}
+          <Route
+  path="/:username/edit-workout/:workoutId"
+  element={<EditWorkout />}
+/>
+        </Routes>
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 }
 

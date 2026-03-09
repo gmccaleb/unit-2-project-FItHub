@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 function WorkoutSubmitted() {
   const location = useLocation();
+  const { user } = useAuth();
   const workoutTitle = location.state?.workoutTitle || "";
 
   return (
@@ -13,10 +15,11 @@ function WorkoutSubmitted() {
         </p>
       )}
       <p>Great job! Your workout has been added to your history.</p>
-      
-      <Link to="/Log-Workout">🡸 Log Another Workout</Link>
+
+    
+      <Link to={`/${user.username}/log-workout`}>🡸 Log Another Workout</Link>
       <br />
-      <Link to="/Workout-History">View Workout History 🡺</Link>
+      <Link to={`/${user.username}/workout-history`}>View Workout History 🡺</Link>
       <br />
     </main>
   );
