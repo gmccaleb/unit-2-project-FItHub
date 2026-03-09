@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import Button from "../reusable/Button";
 
-
 function Register() {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -12,47 +11,44 @@ function Register() {
     firstName: "",
     email: "",
     username: "",
-    password: ""
+    password: "",
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState([]); // Array instead of string to handle multiple error messages from backend
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   // Sends register request to backend, and updates auth state on success
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError([]);
 
     try {
       const response = await fetch("http://localhost:8080/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        const message = await response.json();
-        setError(Object.values(message)[0] || "Request failed");
+        const message = await response.json(); //Backend should return { message: "Error message" } on failure
+        setError(Object.values(message) || ["Request failed"]);
         return;
       }
 
       const userData = await response.json();
 
-      // Auto login user after register
       auth.login(userData);
-
       navigate("/");
-
     } catch (err) {
-      setError("Server error");
+      setError(["Server error"]);
     }
   };
 
@@ -60,7 +56,13 @@ function Register() {
     <div className="register-container">
       <h2>Register</h2>
 
-      {error && <p className="error">{error}</p>}
+      {error.length > 0 && (
+        <ul className="error-list">
+          {error.map((err, index) => (
+            <li key={index}>{err}</li>
+          ))}
+        </ul>
+      )}
 
       <form onSubmit={handleSubmit}>
         <input
@@ -72,7 +74,7 @@ function Register() {
         />
 
         <input
-        // type="email"
+          // type="email"
           name="email"
           placeholder="Email"
           value={formData.email}
@@ -107,4 +109,4 @@ function Register() {
   );
 }
 
-export default Register
+export default Register;
