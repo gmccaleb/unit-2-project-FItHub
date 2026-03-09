@@ -39,8 +39,8 @@ function Register() {
       });
 
       if (!response.ok) {
-        const message = await response.text();
-        setError(message);
+        const message = await response.json();
+        setError(Object.values(message)[0] || "Request failed");
         return;
       }
 
@@ -68,13 +68,16 @@ function Register() {
           placeholder="First Name"
           value={formData.firstName}
           onChange={handleChange}
+          required
         />
 
         <input
+        // type="email"
           name="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -82,6 +85,7 @@ function Register() {
           placeholder="Username"
           value={formData.username}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -90,6 +94,7 @@ function Register() {
           placeholder="Password (min 8 characters)"
           value={formData.password}
           onChange={handleChange}
+          required
         />
 
         <Button text="Register" type="submit" className="submit" />
