@@ -14,6 +14,7 @@ function Register() {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState([]); // Array instead of string to handle multiple error messages from backend
 
   const handleChange = (e) => {
@@ -91,13 +92,22 @@ function Register() {
         />
 
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Password (min 8 characters)"
           value={formData.password}
           onChange={handleChange}
           required
         />
+
+        <label className="show-password">
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
+          />
+          Show Password
+        </label>
 
         <Button text="Register" type="submit" className="submit" />
 
