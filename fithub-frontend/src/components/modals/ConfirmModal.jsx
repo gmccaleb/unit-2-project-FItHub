@@ -4,7 +4,6 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
   return (
     <div className="modal-overlay">
       <div className="modal">
-
         <p className="modal-message">{message}</p>
 
         <div className="modal-actions">
@@ -22,7 +21,6 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
             text="Delete"
           />
         </div>
-
       </div>
     </div>
   );
