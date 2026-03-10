@@ -21,6 +21,8 @@ function NavMenu() {
         Exercise Library
       </Link>
 
+      
+
       {user && (
         <>
           <Link className="link" to={`/${user.username}/log-workout`}>
