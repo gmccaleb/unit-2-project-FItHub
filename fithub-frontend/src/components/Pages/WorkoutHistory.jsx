@@ -2,14 +2,25 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import TrashButton from "../reusable/TrashButton";
 import { useNavigate } from "react-router";
-import { Pencil, PencilIcon } from "lucide-react";
+import { PencilIcon } from "lucide-react";
+import ConfirmModal from "../modals/ConfirmModal";
 
 function WorkoutHistory() {
   const { user } = useAuth();
   const [workoutHistory, setWorkoutHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
 
+  const handleDeleteClick = (id) => {
+    setSelectedWorkout(id);
+    setShowConfirm(true);
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
+  };
   // Fetches workout history from backend API and updates state
   const fetchHistory = async () => {
     try {
@@ -35,16 +46,10 @@ function WorkoutHistory() {
     fetchHistory();
   }, [user?.username]);
 
-  const handleDeleteWorkout = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this workout?",
-    );
-
-    if (!confirmDelete) return;
-
+  const confirmDeleteWorkout = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/${user.username}/workout-history/${id}`,
+        `http://localhost:8080/${user.username}/workout-history/${selectedWorkout}`,
         {
           method: "DELETE",
         },
@@ -52,11 +57,13 @@ function WorkoutHistory() {
 
       if (!res.ok) throw new Error("Failed to delete workout");
 
-      // re-fetch updated workout history
       fetchHistory();
     } catch (error) {
       console.error(error);
       alert("Error deleting workout");
+    } finally {
+      setShowConfirm(false);
+      setSelectedWorkout(null);
     }
   };
 
@@ -123,7 +130,7 @@ function WorkoutHistory() {
                       </button>
 
                       <TrashButton
-                        onClick={() => handleDeleteWorkout(workout.id)}
+                        onClick={() => handleDeleteClick(workout.id)}
                       />
                     </div>
                   </td>
@@ -133,6 +140,14 @@ function WorkoutHistory() {
           </table>
         )}
       </section>
+      {/* Confirmation modal for deleting a workout */}
+      {showConfirm && (
+        <ConfirmModal
+          message="Are you sure you want to delete this workout?"
+          onConfirm={confirmDeleteWorkout}
+          onCancel={cancelDelete}
+        />
+      )}
     </main>
   );
 }
