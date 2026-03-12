@@ -1,12 +1,8 @@
-
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
-
-
 function Home() {
-
-  const { user }= useAuth();
+  const { user } = useAuth();
   return (
     <main className="home">
       <h1>Welcome to FitHub!</h1>
@@ -26,7 +22,7 @@ function Home() {
         </p>
       </div>
 
-     <section className="home-motivation">
+      <section className="home-motivation">
         <h2>Why Choose FitHub?</h2>
         <ul>
           <li> Keep all your workouts organized in one place</li>
@@ -35,7 +31,7 @@ function Home() {
         </ul>
       </section>
 
-      { !user && (
+      {!user && (
         <section className="home-cta">
           <p>
             Ready to start your fitness journey?{" "}

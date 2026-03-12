@@ -14,14 +14,17 @@ function LogWorkout() {
     { exerciseName: "", sets: "", reps: "", weight: "" },
   ]);
 
-  // Removes an exercise input row by index, but ensures at least one row remains
-    const removeExerciseField = (index) => {
-    if (exercises.length === 1) return; // keep at least one exercise row
+  // Removes an exercise input row by index, but makes sure at least one row remains
+  const removeExerciseField = (index) => {
+    if (exercises.length === 1) return;
     setExercises(exercises.filter((_, i) => i !== index));
   };
 
   const addExerciseField = () => {
-    setExercises([...exercises, { exerciseName: "", sets: "", reps: "", weight: "" }]);
+    setExercises([
+      ...exercises,
+      { exerciseName: "", sets: "", reps: "", weight: "" },
+    ]);
   };
 
   const handleExerciseChange = (index, field, value) => {
@@ -121,7 +124,7 @@ function LogWorkout() {
                 handleExerciseChange(index, "sets", e.target.value)
               }
               min={0}
-               onKeyDown={(e) => {
+              onKeyDown={(e) => {
                 if (e.key === "e" || e.key === "E") {
                   e.preventDefault();
                 }
@@ -135,7 +138,7 @@ function LogWorkout() {
                 handleExerciseChange(index, "reps", e.target.value)
               }
               min={0}
-               onKeyDown={(e) => {
+              onKeyDown={(e) => {
                 if (e.key === "e" || e.key === "E") {
                   e.preventDefault();
                 }

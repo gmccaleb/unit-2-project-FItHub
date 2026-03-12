@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 // AuthProvider wraps the entire app and provides auth state to all components
 export function AuthProvider({ children }) {
-    // Uses local storage to keep user logged in across page refreshes
+  // Uses local storage to keep user logged in after page refreshes
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("fithub_user");
     return savedUser ? JSON.parse(savedUser) : null;

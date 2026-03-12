@@ -8,7 +8,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import About from "./components/Pages/About";
 import WorkoutSubmitted from "./components/Pages/WorkoutSubmitted";
-import WorkoutHistory from "./components/Pages/WorkOutHistory";
+import WorkoutHistory from "./components/Pages/WorkoutHistory";
 import Register from "./components/Pages/Register";
 import Login from "./components/Pages/Login";
 import { useAuth } from "./components/context/AuthContext";
@@ -52,14 +52,11 @@ function App() {
             path="/:username/workout-submitted"
             element={<WorkoutSubmitted />}
           />
-          {/* <Route
-            path="/:username/workout-history/:workoutId/edit"
-            element={<EditWorkout />}
-          /> */}
+
           <Route
-  path="/:username/edit-workout/:workoutId"
-  element={<EditWorkout />}
-/>
+            path="/:username/edit-workout/:workoutId"
+            element={<EditWorkout />}
+          />
         </Routes>
       </div>
 
