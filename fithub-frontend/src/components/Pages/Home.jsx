@@ -1,6 +1,12 @@
+
 import { Link } from "react-router";
+import { useAuth } from "../context/AuthContext";
+
+
 
 function Home() {
+
+  const { user }= useAuth();
   return (
     <main className="home">
       <h1>Welcome to FitHub!</h1>
@@ -20,19 +26,25 @@ function Home() {
         </p>
       </div>
 
-      <section>
-        <Link to="/Exercise-Library" className="btn-link">
-          View Exercise Library
-        </Link>
-        <br />
-        <Link to="/Log-Workout" className="btn-link">
-          Log Workouts
-        </Link>
-        <br />
-        <Link to="/Workout-History" className="btn-link">
-          View Workout History
-        </Link>
+     <section className="home-motivation">
+        <h2>Why Choose FitHub?</h2>
+        <ul>
+          <li> Keep all your workouts organized in one place</li>
+          <li> Track your progress and reach your fitness goals faster</li>
+          <li> Explore a variety of exercises with instructions </li>
+        </ul>
       </section>
+
+      { !user && (
+        <section className="home-cta">
+          <p>
+            Ready to start your fitness journey?{" "}
+            <Link to="/register" className="btn-link">
+              Create Your Account
+            </Link>
+          </p>
+        </section>
+      )}
     </main>
   );
 }

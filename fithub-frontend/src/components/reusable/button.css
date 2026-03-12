@@ -34,31 +34,6 @@
   background-color: #45a049;
 }
 
-/* Reset History Button */
-.btn.reset-history {
-  display: inline-block;
-  margin: 10px 0;
-  padding: 10px 22px;
-  background-color: #ff0000;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.btn.reset-history:hover {
-  background-color: #d50000;
-  transform: translateY(-2px); /* moves the button up like it's floating */
-}
-
-.btn.reset-history:active {
-  transform: translateY(0);
-}
 
 /* Login Button */
 .btn.login {
@@ -124,4 +99,32 @@
 
 .edit-btn:active {
   transform: scale(0.95);
+}
+
+/* Logout Button */
+
+.btn.logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: transparent;
+  border: 2px solid #2c7be5;
+  color: #2c7be5;
+
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn.logout:hover {
+  background-color: #2c7be5;
+  color: white;
+}
+
+.btn.logout:active {
+  transform: scale(0.96);
 }
