@@ -17,6 +17,8 @@ function EditWorkout() {
   });
 
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState(""); // text of the confirmation
+  const [messageType, setMessageType] = useState("success"); // "success" or "error"
 
   // Fetch the workout from backend
   useEffect(() => {
@@ -99,18 +101,27 @@ function EditWorkout() {
       );
 
       if (!res.ok) throw new Error("Failed to update workout");
+      setMessage("✅ Workout updated successfully!");
+      setMessageType("success");
 
-      alert("Workout updated successfully");
-      navigate(`/${username}/workout-history`);
+      // Redirect back to workout history after a short delay
+      setTimeout(() => {
+        setMessage("");
+        navigate(`/${username}/workout-history`);
+      }, 2000);
     } catch (error) {
       console.error(error);
-      alert("Error updating workout");
+      setMessage("❌ Error updating workout");
+      setMessageType("error");
+      setTimeout(() => setMessage(""), 3000);
     }
   };
 
   return (
     <main className="edit-workout">
       <h2>Edit Workout</h2>
+      {message && <div className={`message ${messageType}`}>{message}</div>}
+
       <form onSubmit={handleSubmit}>
         <label>
           Workout Title:
