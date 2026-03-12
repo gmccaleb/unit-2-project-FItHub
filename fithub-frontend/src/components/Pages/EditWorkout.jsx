@@ -17,8 +17,8 @@ function EditWorkout() {
   });
 
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState(""); // text of the confirmation
-  const [messageType, setMessageType] = useState("success"); // "success" or "error"
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("success");
 
   // Fetch the workout from backend
   useEffect(() => {
