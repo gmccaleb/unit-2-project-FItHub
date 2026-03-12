@@ -16,10 +16,11 @@ function WorkoutSubmitted() {
       )}
       <p>Great job! Your workout has been added to your history.</p>
 
-    
       <Link to={`/${user.username}/log-workout`}>🡸 Log Another Workout</Link>
       <br />
-      <Link to={`/${user.username}/workout-history`}>View Workout History 🡺</Link>
+      <Link to={`/${user.username}/workout-history`}>
+        View Workout History 🡺
+      </Link>
       <br />
     </main>
   );
