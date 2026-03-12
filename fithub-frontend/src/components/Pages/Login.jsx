@@ -59,7 +59,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h2>Log into FitHub</h2>
+      <h2>Welcome Back</h2>
 
       {error && <p className="error">{error}</p>}
 

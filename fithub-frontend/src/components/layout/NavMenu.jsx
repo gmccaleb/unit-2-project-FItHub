@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import Button from "../reusable/Button";
 
 function NavMenu() {
   const { user, logout } = useAuth();
@@ -20,8 +21,11 @@ function NavMenu() {
         Exercise Library
       </Link>
 
+    
+
       {user && (
         <>
+        
           <Link className="link" to={`/${user.username}/log-workout`}>
             Log Workout
           </Link>
@@ -29,18 +33,21 @@ function NavMenu() {
           <Link className="link" to={`/${user.username}/workout-history`}>
             Workout History
           </Link>
+          
         </>
       )}
 
       {!user ? (
         <>
+          <span className="nav-divider"></span>
           <Link className="link" to="/login">Login</Link>
           <Link className="link" to="/register">Register</Link>
         </>
       ) : (
-        <button className="link" onClick={handleLogout}>
-          Logout
-        </button>
+        <>
+          <span className="nav-divider"></span>
+        <Button type="button" onClick={handleLogout} className="logout" text="Logout" />
+        </>
       )}
     </div>
   );

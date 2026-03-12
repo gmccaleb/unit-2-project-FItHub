@@ -3,6 +3,7 @@
 @import url('./components/reusable/ExerciseCard.css');
 @import url('./App.css');
 @import url('./components/Pages/pages.css');
+@import url('./components/modals/modals.css');
 
 body {
   font-family: Arial, sans-serif; 
