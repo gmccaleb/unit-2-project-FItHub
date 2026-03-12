@@ -84,6 +84,104 @@
   transform: translateY(-2px);
 }
 
+/* ==================================================
+   HOME PAGE EXTENSIONS
+   - Motivation section
+   - CTA section (conditional)
+================================================== */
+
+/* Motivation / Features section */
+.home-motivation {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.home-motivation h2 {
+  font-size: 1.8rem;
+  color: #1e90ff; /* FitHub blue */
+  margin-bottom: 15px;
+  font-weight: 700;
+  position: relative;
+}
+
+.home-motivation h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #1e90ff;
+  margin: 6px 0 0 0;
+  border-radius: 2px;
+}
+
+.home-motivation ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151; /* slightly dark gray */
+}
+
+.home-motivation li::before {
+  content: "✔";
+  margin-right: 8px;
+  color: #1e90ff;
+}
+
+/* CTA section - shows if user is not logged in */
+.home-cta {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.home-cta p {
+  font-size: 1.1rem;
+  color: #374151;
+}
+
+.home-cta .btn-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.home-cta .btn-link:hover {
+  background-color: #0072d1;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for extensions */
+@media (max-width: 768px) {
+  .home-motivation {
+    text-align: center;
+  }
+
+  .home-motivation ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-motivation h2 {
+    font-size: 1.5rem;
+  }
+
+  .home-motivation ul li {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .home-cta p {
+    font-size: 1rem;
+  }
+}
 /* Responsive layout */
 @media (max-width: 768px) {
   .intro-section {
@@ -535,8 +633,7 @@
   font-size: 2.2rem;
   text-align: center;
   margin-bottom: 25px;
-  color: #1e90ff; /* main FitHub blue */
-  font-weight: 800;
+  color: #1e90ff; 
   letter-spacing: 1px;
   position: relative;
 }
@@ -553,7 +650,7 @@
 
 .log-workout h4 {
   font-size: 1.2rem;
-  color: #2563eb; /* brighter energetic FitHub blue */
+  color: #2563eb; 
   margin-bottom: 6px;
 }
 
@@ -599,7 +696,7 @@
   margin-bottom: 12px;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #f0f5ff; /* subtle light blue card */
+  background-color: #f0f5ff; 
   padding: 10px;
   border-radius: 12px;
 }
@@ -760,7 +857,7 @@
   display: flex;
   flex-direction: column;
   font-weight: 600;
-  color: #374151; /* neutral dark gray */
+  color: #374151; 
   margin-bottom: 10px;
 }
 
@@ -788,7 +885,7 @@
   margin-bottom: 12px;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #f0f5ff; /* subtle light blue card */
+  background-color: #f0f5ff; 
   padding: 10px;
   border-radius: 12px;
 }
@@ -796,7 +893,7 @@
 .exercise-row input {
   flex: 1 1 100px;
   min-width: 80px;
-  background-color: #fff; /* input stands out on row card */
+  background-color: #fff; 
 }
 
 .exercise-row .trash-btn {

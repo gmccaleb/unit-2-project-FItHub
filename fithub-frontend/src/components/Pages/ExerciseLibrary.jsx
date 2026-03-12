@@ -360,7 +360,7 @@ function ExerciseLibrary() {
         "Place right knee and hand on a bench for support. Hold a dumbbell in left hand, arm extended. Pull dumbbell toward torso, squeezing shoulder blade. Lower under control. Switch sides after reps.",
       muscleGroups: ["Back", "Biceps", "Rear Shoulders"],
       image:
-        "https://media.istockphoto.com/id/1407962419/vector/man-doing-single-arm-bent-over-row-exercise-flat-vector-illustration-isolated-on-white.jpg?s=612x612&w=0&k=20&c=jN-GJvvlh6f0WXtZLSq50VJrJsxjSX608A0TLynMrwI=",
+        "https://www.shutterstock.com/search/dumbbell-row?image_type=illustration",
     },
     {
       id: 41,

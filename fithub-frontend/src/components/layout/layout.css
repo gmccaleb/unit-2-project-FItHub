@@ -161,3 +161,23 @@ footer {
     background-color: #0072d1;
   }
 }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-divider {
+  width: 2px;              /* thicker line */
+  height: 24px;
+  background-color: #c3d8f0; /* FitHub blue */
+  opacity: 0.35;           /* soften it */
+  border-radius: 2px;
+}
