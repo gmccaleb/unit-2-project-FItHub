@@ -14,8 +14,11 @@ function About() {
         </p>
 
         <p>
-          This project was created to practice React concepts like components,
-          props, state, and local storage.
+          This project was built to practice full-stack development using React
+          and Java Spring Boot. It applies core React concepts such as
+          component-based architecture, props, and state management while
+          integrating a backend API that supports full CRUD operations for
+          creating, viewing, updating, and deleting workout data.
         </p>
       </section>
     </main>

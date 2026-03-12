@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #e8f4fc; /* light sky tone */
+  background-color: #e8f4fc;
   box-sizing: border-box;
 }
 
@@ -93,7 +93,9 @@ header {
   font-weight: 500;
   padding: 6px 12px;
   border-radius: 5px;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .nav-menu a:hover {
@@ -106,7 +108,7 @@ header {
 ================================================== */
 
 footer {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   border-top: 2px solid #e0e0e0;
   text-align: center;
   padding: 15px 30px;
@@ -175,9 +177,9 @@ footer {
 }
 
 .nav-divider {
-  width: 2px;              /* thicker line */
+  width: 2px;
   height: 24px;
-  background-color: #c3d8f0; /* FitHub blue */
-  opacity: 0.35;           /* soften it */
+  background-color: #c3d8f0;
+  opacity: 0.35;
   border-radius: 2px;
 }
