@@ -8,7 +8,9 @@
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* smaller shadow */
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
     background-color 0.25s ease;
   cursor: pointer;
 }
@@ -21,8 +23,8 @@
 
 .card img {
   width: 100%;
-  aspect-ratio: 16 / 9;    /* maintains 16:9 ratio */
-  object-fit: contain;      /* makes sure the entire image fits */
+  aspect-ratio: 16 / 9; /* maintains 16:9 ratio */
+  object-fit: contain; /* makes sure the entire image fits */
   border-radius: 10px;
   margin-bottom: 10px;
   border: 2px solid #1e90ff20;
