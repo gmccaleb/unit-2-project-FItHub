@@ -894,6 +894,27 @@
   margin-left: 5px;
 }
 
+
+
+.message {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive layout */
+
 @media (max-width: 768px) {
   .exercise-row {
     flex-direction: column;
