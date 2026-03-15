@@ -33,8 +33,6 @@ function WorkoutHistory() {
       const data = await res.json();
       setWorkoutHistory(data);
     } catch (error) {
-      console.error(error);
-      alert("Error fetching workout history");
     } finally {
       setLoading(false);
     }
@@ -59,8 +57,6 @@ function WorkoutHistory() {
 
       fetchHistory();
     } catch (error) {
-      console.error(error);
-      alert("Error deleting workout");
     } finally {
       setShowConfirm(false);
       setSelectedWorkout(null);

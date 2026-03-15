@@ -42,7 +42,6 @@ function EditWorkout() {
 
         setWorkout(data);
       } catch (error) {
-        console.error("Fetch workout error:", error);
       } finally {
         setLoading(false);
       }
@@ -110,7 +109,6 @@ function EditWorkout() {
         navigate(`/${username}/workout-history`);
       }, 2000);
     } catch (error) {
-      console.error(error);
       setMessage("❌ Error updating workout");
       setMessageType("error");
       setTimeout(() => setMessage(""), 3000);
