@@ -35,10 +35,10 @@ function LogWorkout() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();``
 
     if (!user?.username) {
-      alert("User not authenticated");
+      navigate("/login"); // Redirect to login if user isn't authenticated
       return;
     }
 
@@ -72,8 +72,6 @@ function LogWorkout() {
         state: { workoutTitle: savedWorkout.title },
       });
     } catch (error) {
-      console.error(error);
-      alert("Error logging workout. Please try again.");
     }
   };
 
@@ -100,6 +98,7 @@ function LogWorkout() {
               type="date"
               value={workoutDate}
               onChange={(e) => setWorkoutDate(e.target.value)}
+              required
             />
           </label>
         </div>

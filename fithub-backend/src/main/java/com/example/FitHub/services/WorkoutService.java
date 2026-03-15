@@ -8,9 +8,9 @@ import com.example.FitHub.repositories.UserRepository;
 import com.example.FitHub.repositories.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class WorkoutService {
