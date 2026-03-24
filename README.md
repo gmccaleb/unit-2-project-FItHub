@@ -76,7 +76,7 @@ With a component-based architecture, conditional rendering, and seamless fronten
 
 1. Navigate to the frontend folder:
    ```bash
-   cd frontend
+   cd fithub-frontend
    ```
 
 2. Install dependencies:
@@ -120,12 +120,11 @@ With a component-based architecture, conditional rendering, and seamless fronten
 ## ⚠️ Unsolved Problems / Future Features
 
 ### Current Limitations
-- Limited validation for workout inputs (e.g., missing reps/sets edge cases)
-- Basic error handling on frontend
+- Mock authentication (no real security or hashing)
 - No advanced filtering or sorting for workout history
 
 ### Future Improvements
-- Add exercise templates or presets
+- Add Spring Security
 - Implement search and filtering for workouts
 - Improve form validation and user feedback
 - Add progress charts and analytics dashboard
