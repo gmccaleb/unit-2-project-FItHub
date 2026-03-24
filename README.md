@@ -16,8 +16,8 @@ MySQL Server (version 8.0+)
 
 Back End Setup (Java/Spring Boot/MySQL)
 1. Clone the repository: In the terminal, navigate to the directory where you want the project to live, then execute the following commands:
-   ```git clone https://github.com/gmccaleb/unit-2-project-FItHub
-   cd unit-2-project-FItHub```
+   ``` git clone https://github.com/gmccaleb/unit-2-project-FItHub
+   cd unit-2-project-FItHub ```
 
 2. 
 
