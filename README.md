@@ -1,16 +1,14 @@
 # 💪 FitHub
 
 ## 🚀 Overview
-FitHub is a full-stack workout-tracking web application that enables users to log, manage, and review their fitness routines through an intuitive and responsive interface.
+FitHub is a full-stack workout-tracking web application that enables users to log, manage, and review their fitness routines through an intuitive and responsive interface. In addition to tracking workouts, users can browse an exercise library to discover new exercises to include in their routines. The application supports full **CRUD functionality***, allowing users to create, retrieve, update, and delete workout data through validated forms and asynchronous HTTP requests. With a component-based architecture, conditional rendering, and seamless frontend-backend integration, FitHub delivers a structured and interactive user experience.
 
-In addition to tracking workouts, users can browse an exercise library to discover new exercises to include in their routines. This project was built to demonstrate modern full-stack development practices by combining:
+This project was built to demonstrate modern full-stack development practices by combining:
 
 - A **React frontend** using functional components, hooks, React Router, and dynamic state management  
 - A **Java Spring Boot backend** with ORM, JPA repositories, and RESTful API endpoints  
 
-The application supports full **CRUD functionality**, allowing users to create, retrieve, update, and delete workout data through validated forms and asynchronous HTTP requests.
 
-With a component-based architecture, conditional rendering, and seamless frontend-backend integration, FitHub showcases the ability to build a structured, interactive, and data-driven web application from end to end.
 
 ---
 
