@@ -54,22 +54,25 @@ With a component-based architecture, conditional rendering, and seamless fronten
    ```
 
 2. **Set up MySQL database**
-   - Create a new database (example: `fithub_db`)
+   - Create a new database (example: `fithub`)
    - Update your `application.properties` file:
 
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/fithub_db
+   spring.datasource.url=jdbc:mysql://localhost:3306/fithub
    spring.datasource.username=YOUR_USERNAME
    spring.datasource.password=YOUR_PASSWORD
 
    spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
    ```
 
 3. **Run the backend**
    - Open the backend project in IntelliJ
    - Run the Spring Boot application
-
+4. **Run the Java/Spring Boot application**
+   - If you do not have the application loaded in an IDE such as IntelliJ, go to the terminal and navigate to the root directory of the backend project. Then execute the following command to build and run the application (Hibernate will automatically create the tables):
+   ```mvn spring-boot:run
+   ```
+   ✅ The API should now be running on http://localhost:8080
 ---
 
 ### 💻 Front End Setup (React / Vite)
@@ -113,6 +116,10 @@ With a component-based architecture, conditional rendering, and seamless fronten
 ---
 
 ## 🗄️ ER Diagram
+This project utilizes a MySQL database structured around 3 entities with the following relationships:
+1. 👤 Users (1 → *) Workouts: One-to-Many
+2. 💪 Workouts (1 → *) Exercises: One-to-Many
+
 [Entity Relationship Diagram](https://dbdiagram.io/d/Fithub-Diagram-698e79eabd82f5fce296caa9)
 
 ---
@@ -127,8 +134,6 @@ With a component-based architecture, conditional rendering, and seamless fronten
 - Add Spring Security
 - Implement search and filtering for workouts
 - Improve form validation and user feedback
-- Add progress charts and analytics dashboard
-- Enhance UI/UX with animations and accessibility improvements
 - Deploy application (AWS, Vercel, or Heroku)
 
 ---
