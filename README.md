@@ -12,6 +12,17 @@ This project was built to demonstrate modern full-stack development practices by
 
 ---
 
+## 🧩 Features
+
+- ✅ User authentication (register & login)
+- 🏋️ Create, edit, and delete workouts
+- 📋 View workout history
+- 📚 Browse exercise library
+- 🔄 Full CRUD operations with backend integration
+- ⚡ Dynamic UI with React state and routing
+
+---
+
 ## 🛠️ Technologies Used
 
 ### Frontend
@@ -98,16 +109,6 @@ This project was built to demonstrate modern full-stack development practices by
 
 ---
 
-## 🧩 Features
-
-- ✅ User authentication (register & login)
-- 🏋️ Create, edit, and delete workouts
-- 📋 View workout history
-- 📚 Browse exercise library
-- 🔄 Full CRUD operations with backend integration
-- ⚡ Dynamic UI with React state and routing
-
----
 
 ## 🖼️ Wireframes
 [Moqups Wireframe](https://app.moqups.com/wtwUOHOPj3De1OHMeqI4smxaO1PVrj8n/view/page/ab652dc1c)
@@ -115,9 +116,8 @@ This project was built to demonstrate modern full-stack development practices by
 ---
 
 ## 🗄️ ER Diagram
-This project utilizes a MySQL database structured around 3 entities with the following relationships:
-1. 👤 Users (1 → *) Workouts: One-to-Many
-2. 💪 Workouts (1 → *) Exercises: One-to-Many
+This project utilizes a MySQL database with 3 entities:
+Users, Workouts, and Exercises, with one-to-many relationships between them.
 
 [Entity Relationship Diagram](https://dbdiagram.io/d/Fithub-Diagram-698e79eabd82f5fce296caa9)
 
