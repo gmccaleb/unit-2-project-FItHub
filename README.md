@@ -70,7 +70,8 @@ With a component-based architecture, conditional rendering, and seamless fronten
    - Run the Spring Boot application
 4. **Run the Java/Spring Boot application**
    - If you do not have the application loaded in an IDE such as IntelliJ, go to the terminal and navigate to the root directory of the backend project. Then execute the following command to build and run the application (Hibernate will automatically create the tables):
-   ```mvn spring-boot:run
+   ```bash
+   mvn spring-boot:run
    ```
    ✅ The API should now be running on http://localhost:8080
 ---
