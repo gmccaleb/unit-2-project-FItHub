@@ -1,0 +1,48 @@
+/* Exercise Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* smaller shadow */
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15); /* bigger shadow */
+  background-color: #e8f0ff;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* maintains 16:9 ratio */
+  object-fit: contain; /* makes sure the entire image fits */
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #1e90ff20;
+}
+.card h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e90ff;
+  font-family: "Inter", sans-serif;
+}
+
+.card p {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #555;
+  margin-top: 5px;
+  font-family: "Inter", sans-serif;
+}

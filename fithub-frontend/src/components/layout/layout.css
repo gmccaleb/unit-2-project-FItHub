@@ -1,0 +1,185 @@
+/* ==================================================
+    STYLING FOR ALL
+================================================== */
+
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #e8f4fc;
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   HEADER STYLING
+================================================== */
+
+/* Header container */
+header {
+  display: flex;
+  justify-content: space-between; /* Title left, nav right */
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Site title */
+#title h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e90ff;
+  letter-spacing: 1px;
+}
+
+.slide-fade-hover {
+  animation: slideFade 0.7s ease-out;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out; /* smooth transition */
+}
+
+.slide-fade-hover:hover {
+  animation: pulse 1s infinite; /* pulse animation */
+}
+
+/* Keyframes for animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* grow slightly */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideFade {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Link styling for title */
+#title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#title a:hover h1 {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  gap: 15px; /* Space between nav links */
+}
+
+/* Navigation links styling */
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.nav-menu a:hover {
+  background-color: #1e90ff;
+  color: #fff;
+}
+
+/* ==================================================
+   FOOTER STYLING
+================================================== */
+
+footer {
+  background-color: #f8f9fa;
+  border-top: 2px solid #e0e0e0;
+  text-align: center;
+  padding: 15px 30px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* ==================================================
+   RESPONSIVE STYLING
+================================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  .nav-menu {
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #title h1 {
+    font-size: 1.5rem;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-menu a {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    background-color: #1e90ff;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .nav-menu a:hover {
+    background-color: #0072d1;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-divider {
+  width: 2px;
+  height: 24px;
+  background-color: #c3d8f0;
+  opacity: 0.35;
+  border-radius: 2px;
+}

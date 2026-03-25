@@ -1,0 +1,15 @@
+@import url("./components/layout/layout.css");
+@import url("./components/reusable/button.css");
+@import url("./components/reusable/ExerciseCard.css");
+@import url("./App.css");
+@import url("./components/Pages/pages.css");
+@import url("./components/modals/modals.css");
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
