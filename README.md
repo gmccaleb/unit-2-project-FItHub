@@ -40,7 +40,7 @@ This project was built to demonstrate modern full-stack development practices by
 - Maven
 - MySQL
 - Hibernate (JPA)
-- Spring Security
+
 
 ---
 
